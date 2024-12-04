@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Pelacakan</title>
+    <link rel="stylesheet" href="../app/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hasil Pelacakan</h1>
+        {% if found %}
+            <p><strong>Resi:</strong> {{ tracking.resi }}</p>
+            <p><strong>Status:</strong> {{ tracking.status }}</p>
+            <p><strong>Tanggal:</strong> {{ tracking.tanggal }}</p>
+            <p><strong>Lokasi:</strong> {{ tracking.lokasi }}</p>
+        {% else %}
+            <p>Data pelacakan untuk resi {{ resi }} tidak ditemukan.</p>
+        {% endif %}
+        <br>
+        <a href="/">Kembali</a>
+    </div>
+</body>
+</html>
