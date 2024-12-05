@@ -42,18 +42,7 @@ body {
     transform: scale(1.05); /* Zoom-in sedikit */
 }
 
-/* Menambahkan teks "Joji Express" pada background */
-body::before {
-    content: 'Joji Express';
-    font-family: 'Platinum Sign', cursive;
-    font-size: 100px;
-    color: #e74c3c; /* Merah pekat */
-    position: absolute;
-    top: 25%;  /* Menggeser teks lebih atas */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Memusatkan teks secara horizontal dan vertikal */
-    z-index: 1; /* Menempatkan teks di belakang konten */
-}
+
 
 /* Heading */
 h2 {
