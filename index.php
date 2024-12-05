@@ -50,23 +50,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cek Status Pengiriman</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Cek Status Pengiriman Berdasarkan ID Pembayaran</h2>
-        <form action="index.php" method="post">
-            <label for="transaction_id">Masukkan ID Pembayaran:</label>
-            <input type="number" id="transaction_id" name="transaction_id" required>
-            <button type="submit">Cek Status</button>
-        </form>
-    </div>
-</body>
-</html>
