@@ -8,7 +8,7 @@
 /* Body styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(45deg, #bdc3c7, #ffffff, #3498db); /* Gradasi abu-abu, putih, biru */
     color: #333;
     display: flex;
     justify-content: center;  /* Menempatkan konten di tengah secara horizontal */
