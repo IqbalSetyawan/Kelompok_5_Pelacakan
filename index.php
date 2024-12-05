@@ -1,54 +1,6 @@
 <?php
-// db_connection.php: Menghubungkan aplikasi ke database
-include 'db_connection.php';
-
-// Cek jika formulir dikirim
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ambil ID Pembayaran (transaction_id) dari input form
-    $transaction_id = $_POST['transaction_id'];
-
-    // Query untuk mengambil data transaksi dan status berdasarkan transaction_id
-    $sql = "
-        SELECT 
-            p.transaction_id, 
-            p.total_price, 
-            p.created_at, 
-            s.status, 
-            s.last_updated, 
-            s.location, 
-            s.remarks
-        FROM 
-            pembayaran p
-        JOIN 
-            status_paket s ON p.transaction_id = s.transaction_id
-        WHERE 
-            p.transaction_id = :transaction_id;
-    ";
-
-    // Menyiapkan dan mengeksekusi query
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':transaction_id', $transaction_id);
-    $stmt->execute();
-
-    // Mengambil hasil query
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Mengecek jika data ditemukan
-    if ($result) {
-        // Menampilkan hasil pencarian
-        echo "<h3>Hasil Pencarian:</h3>";
-        echo "<p><strong>ID Transaksi:</strong> " . $result['transaction_id'] . "</p>";
-        echo "<p><strong>Total Harga:</strong> " . $result['total_price'] . "</p>";
-        echo "<p><strong>Waktu Transaksi:</strong> " . $result['created_at'] . "</p>";
-        echo "<p><strong>Status:</strong> " . $result['status'] . "</p>";
-        echo "<p><strong>Terakhir Diperbarui:</strong> " . $result['last_updated'] . "</p>";
-        echo "<p><strong>Lokasi:</strong> " . $result['location'] . "</p>";
-        echo "<p><strong>Keterangan:</strong> " . $result['remarks'] . "</p>";
-    } else {
-        // Jika tidak ditemukan
-        echo "<p>ID Pembayaran tidak ditemukan.</p>";
-    }
-}
+// Mengimpor file PHP yang berisi logika pemrosesan
+include 'proses.php';
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +19,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" id="transaction_id" name="transaction_id" required>
             <button type="submit">Cek Status</button>
         </form>
+
+        <?php if (isset($transaction_details)): ?>
+            <?php if ($transaction_details): ?>
+                <h3>Hasil Pencarian:</h3>
+                <p><strong>ID Transaksi:</strong> <?= $transaction_details['transaction_id'] ?></p>
+                <p><strong>Total Harga:</strong> <?= $transaction_details['total_price'] ?></p>
+                <p><strong>Waktu Transaksi:</strong> <?= $transaction_details['created_at'] ?></p>
+                <p><strong>Status:</strong> <?= $transaction_details['status'] ?></p>
+                <p><strong>Terakhir Diperbarui:</strong> <?= $transaction_details['last_updated'] ?></p>
+                <p><strong>Lokasi:</strong> <?= $transaction_details['location'] ?></p>
+                <p><strong>Keterangan:</strong> <?= $transaction_details['remarks'] ?></p>
+            <?php else: ?>
+                <p>ID Pembayaran tidak ditemukan.</p>
+            <?php endif; ?>
+        <?php endif; ?>
     </div>
 </body>
 </html>
