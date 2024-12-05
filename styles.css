@@ -16,6 +16,13 @@ body {
     height: 100vh;            /* Memastikan body memenuhi seluruh tinggi viewport */
     padding: 20px;
     margin: 0;
+    position: relative;
+}
+
+/* Menambahkan font Platinum Sign */
+@font-face {
+    font-family: 'Platinum Sign';
+    src: url('fonts/platinum-sign.ttf');  /* Pastikan path sesuai dengan lokasi file font Anda */
 }
 
 /* Container styling */
@@ -27,11 +34,25 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease; /* Menambahkan transisi */
+    z-index: 2; /* Pastikan container berada di atas background */
 }
 
 /* Efek zoom-in saat pointer menuju ke container */
 .container:hover {
     transform: scale(1.05); /* Zoom-in sedikit */
+}
+
+/* Menambahkan teks "Joji Express" pada background */
+body::before {
+    content: 'Joji Express';
+    font-family: 'Platinum Sign', cursive;
+    font-size: 100px;
+    color: #e74c3c; /* Merah pekat */
+    position: absolute;
+    top: 25%;  /* Menggeser teks lebih atas */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Memusatkan teks secara horizontal dan vertikal */
+    z-index: 1; /* Menempatkan teks di belakang konten */
 }
 
 /* Heading */
